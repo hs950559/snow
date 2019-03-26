@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ListService } from './list.service';
 import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -14,6 +15,7 @@ export class ListComponent implements OnInit {
   direction: number;
   isDesc = true;
   column;
+  private searchTerms = new Subject<string>();
 
   constructor(private listService: ListService) {}
 
@@ -51,7 +53,8 @@ export class ListComponent implements OnInit {
   }
 
   onInputChange(val) {
-    this.searchUser(val);
+    this.searchTerms.next(val);
+    // this.searchUser(val);
   }
 
   loadMoreUser() {
