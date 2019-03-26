@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col">
+    <h1>User List 1</h1>
+  </div>
+  <div class="col d-flex justify-content-end">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="query" class="sr-only">Search User</label>
+      <input
+        type="email"
+        class="form-control"
+        id="query"
+        ngModel
+        #query="ngModel"
+        [ngModelOptions]="{ standalone: true }"
+        aria-describedby="search"
+        placeholder="Search User"
+        (input)="searchUser(query.value)"
+      />
+    </div>
+
+    <button (click)="searchUser(query.value)" class="btn btn-primary mb-2">
+      Search
+    </button>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<app-user-search (inputChange)="onInputChange($event)"></app-user-search>
+
+<table class="table ">
+  <thead class="thead-light">
+    <tr>
+      <th>#</th>
+      <th>Name
+        <i
+          [ngClass]="{
+            'ti-arrows-vertical': column != 'name',
+            'ti-arrow-up': (column == 'name' && !isDesc),
+            'ti-arrow-down': (column == 'name' && isDesc)}"
+          aria-hidden="true"
+          (click)="sortUser('name')">
+        </i>
+      </th>
+      <th>Surname
+          <i
+          [ngClass]="{
+            'ti-arrows-vertical': column != 'surname',
+            'ti-arrow-up': (column == 'surname' && !isDesc),
+            'ti-arrow-down': (column == 'surname' && isDesc)}"
+          aria-hidden="true"
+          (click)="sortUser('surname')">
+        </i>
+      </th>
+      <th>Gendar
+          <i
+          [ngClass]="{
+            'ti-arrows-vertical': column != 'gender',
+            'ti-arrow-up': (column == 'gender' && !isDesc),
+            'ti-arrow-down': (column == 'gender' && isDesc)}"
+          aria-hidden="true"
+          (click)="sortUser('gender')">
+        </i>
+      </th>
+      <th>Region
+          <i
+          [ngClass]="{
+            'ti-arrows-vertical': column != 'region',
+            'ti-arrow-up': (column == 'region' && !isDesc),
+            'ti-arrow-down': (column == 'region' && isDesc)}"
+          aria-hidden="true"
+          (click)="sortUser('region')">
+        </i>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of filteredUsers | orderBy: {property: column, direction: direction};let i = index;">
+      <td>{{ i }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.surname }}</td>
+      <td>{{ user.gender }}</td>
+      <td>{{ user.region }}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="text-center">
+  <button class="btn btn-outline-secondary" (click)="loadMoreUser()">Load More</button>
+</div>
